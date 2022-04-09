@@ -1,0 +1,23 @@
+.loginCard {
+  position: relative;
+  top: calc(50vh - 144px);
+  left: calc(50vw - 210px);
+  padding-top: 36px;
+  padding-bottom: 66px;
+  width: 420px;
+  text-align: center;
+  background-color: white;
+  border-radius: 22px;
+
+  .login {
+    cursor: pointer;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    display: inline-block;
+    &.google {
+      background-color: #4285f4;
+      color: white;
+    }
+  }
+}

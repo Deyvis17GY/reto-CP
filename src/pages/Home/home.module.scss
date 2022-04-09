@@ -1,0 +1,30 @@
+.containerCard {
+  width: 70%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 3fr));
+  gap: 10px;
+
+  .card {
+    margin: 10px 0;
+
+    .figure {
+      width: 200px;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.2s ease-out;
+
+      &:hover {
+        opacity: 0.9;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        transform: scale(1.02);
+      }
+    }
+
+    .description {
+      font-weight: 400;
+      font-size: 18px;
+    }
+  }
+}
