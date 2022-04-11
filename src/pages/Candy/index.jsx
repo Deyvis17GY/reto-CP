@@ -1,22 +1,31 @@
 import { MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons"
 import clsx from "clsx"
+import { CandyFooter } from "components/CandyFooter"
 import { useAuth } from "context/AuthContext"
 import React, { useEffect, useState } from "react"
+import { useRef } from "react"
 import { getCandyStore } from "services/api"
 import { popup } from "utils/popup"
 import styles from "./candy.module.scss"
 
 export const Candy = () => {
   const [candy, setCandy] = useState([])
-  const [value, setValue] = useState(0)
+  const [isZero, setIsZero] = useState(true)
   const [total, setTotal] = useState(0)
+  const [cart, setCart] = useState([])
+
+  const [value, setValue] = useState(0)
+
+  const valueQuantity = useRef(null)
 
   const { user } = useAuth()
 
   const showCandyStore = async () => {
     const { items } = await getCandyStore()
+    const newItems = items.map((item, index) => ({ id: index, ...item }))
     if (!items) return
-    setCandy(items)
+
+    setCandy(newItems)
   }
 
   const defaultImage = ($event) => {
@@ -24,20 +33,51 @@ export const Candy = () => {
       "https://cdn.apis.cineplanet.com.pe/CDN/media/entity/get/ItemGraphic/1244?allowPlaceHolder=true"
   }
 
-  const incrementPrice = (price, $index) => {
-    let counter = value ? value : 1
-    setValue(counter + 1)
-    setTotal(counter * Number(candy[$index].price))
+  const totalProducts = (item) => {
+    let itemInCart2 = cart.find((itemInCart) => itemInCart.id === item.id)
+    if (itemInCart2) {
+      const newQuantity = itemInCart2.quantity + 1
+      const newCart = cart.map((itemInCart) => {
+        if (itemInCart.id === item.id) {
+          return { id: itemInCart.id, quantity: newQuantity }
+        } else {
+          return itemInCart
+        }
+      })
+      setCart(newCart)
+    } else {
+      setCart([...cart, { id: item.id, quantity: 1 }])
+    }
+
+    const totalAmount = total + parseFloat(item.price)
+    setTotal(() => Math.round(totalAmount * 100) / 100)
   }
 
-  const decrementPrice = (price, $index) => {
-    setValue(value - 1)
-    setTotal(value * Number(candy[$index].price))
+  const decrementTotal = (item) => {
+    const itemInCart2 = cart.find((itemInCart) => itemInCart.id === item.id)
+    if (itemInCart2.quantity === 1) {
+      const newCart = cart.filter((itemInCart) => itemInCart.id !== item.id)
+      setCart(newCart)
+    } else {
+      const newQuantity = itemInCart2.quantity - 1
+      const newCart = cart.map((itemInCart) => {
+        if (itemInCart.id === item.id) {
+          return { id: itemInCart.id, quantity: newQuantity }
+        } else {
+          return itemInCart
+        }
+      })
+      setCart(newCart)
+    }
+    const totalAmount = total - parseFloat(item.price)
+    setTotal(totalAmount)
   }
 
-  const isZero = clsx(styles.minus, {
-    [styles.zero]: value === 0
+  const validateZero = clsx(styles.minus, {
+    [styles.zero]: isZero
   })
+
+  const actualQuantity = (id) => cart.find((item) => item.id === id)?.quantity
 
   useEffect(() => {
     showCandyStore()
@@ -64,20 +104,41 @@ export const Candy = () => {
               <figcaption>
                 <h2 className={styles.description}>{item.description}</h2>
               </figcaption>
+
+              {item.id}
             </figure>
 
-            <footer className={styles.footer}>
+            {/* <footer className={styles.footer}>
               <MinusCircleOutlined
-                onClick={() => decrementPrice(item.price, $index)}
-                className={isZero}
+                onClick={() => decrementTotal(item)}
+                className={
+                  actualQuantity(item.id) === undefined
+                    ? validateZero
+                    : styles.minus
+                }
               />
-              <span className={styles.value}>{value}</span>
+              <span ref={valueQuantity} className={styles.value}>
+                {" "}
+                {actualQuantity(item.id) || 0}
+              </span>
               <PlusCircleOutlined
-                onClick={() => incrementPrice(item.price, $index)}
+                onClick={() => totalProducts(item)}
                 className={styles.plus}
               />
               <p>S/.{item.price}</p>
-            </footer>
+            </footer> */}
+
+            <CandyFooter
+              item={item}
+              addCart={() => totalProducts(item)}
+              decrementCard={() => decrementTotal(item)}
+              isQuantityZero={
+                actualQuantity(item.id) === undefined ? true : false
+              }
+            >
+              {" "}
+              {actualQuantity(item.id) || 0}
+            </CandyFooter>
           </div>
         ))}
       </section>
