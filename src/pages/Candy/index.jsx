@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import { CandyFooter } from "components/CandyFooter"
 import { useAuth } from "context/AuthContext"
 import React, { useEffect, useState } from "react"

@@ -1,4 +1,3 @@
-import { getAuth } from "firebase/auth"
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { getPremiers } from "services/api"
@@ -13,11 +12,6 @@ export const Home = () => {
     const { premieres } = await getPremiers()
     if (!premieres) return
     setPremiers(premieres)
-  }
-
-  const singOut = async () => {
-    await getAuth().signOut()
-    navigate("/login")
   }
 
   const handleLogin = () => {
