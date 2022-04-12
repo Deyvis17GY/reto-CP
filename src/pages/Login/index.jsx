@@ -1,4 +1,4 @@
-import { GoogleOutlined } from "@ant-design/icons"
+import { GoogleOutlined, UserOutlined } from "@ant-design/icons"
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
 import styles from "./login.module.scss"
 import clsx from "clsx"
@@ -16,15 +16,14 @@ export const Login = () => {
     }
   }
 
-  const isGoogle = clsx(styles.login, {
-    [styles.google]: true
-  })
-
   return (
     <div className={styles.loginCard}>
       <h2>Bienvenido al reto CP</h2>
-      <div className={isGoogle} onClick={() => signInGoogle()}>
+      <div className={styles.google} onClick={() => signInGoogle()}>
         <GoogleOutlined /> Iniciar sesión con Google
+      </div>
+      <div className={styles.guest} onClick={() => navigate("/candy")}>
+        <UserOutlined /> Ingresar como invitado
       </div>
     </div>
   )
