@@ -12,15 +12,20 @@ $secondary: #66cc99;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    width: 90%;
+  }
 }
 
 .left {
   width: 50%;
   margin: auto;
-}
 
-.left .head {
-  opacity: 0.95;
+  .head {
+    opacity: 0.95;
+  }
 }
 
 .right {
@@ -28,26 +33,26 @@ $secondary: #66cc99;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
 
-.right form {
-  display: flex;
-  flex-flow: column nowrap;
-  width: 100%;
-}
-.formCard {
-  width: 90%;
-  margin: auto;
-  border: 1px solid #000;
-  overflow: hidden;
-  padding: 10px;
-  border-radius: 10px;
-  margin: 10px 0;
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
 
-  .subtitle {
-    font-size: 15px;
-    text-align: start;
-    color: #004a8c;
+    .formCard {
+      width: 90%;
+      border: 1px solid #000;
+      overflow: hidden;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 10px 0;
+
+      .subtitle {
+        font-size: 15px;
+        text-align: start;
+        color: #004a8c;
+      }
+    }
   }
 }
 

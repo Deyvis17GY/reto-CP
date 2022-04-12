@@ -8,6 +8,10 @@
   width: 90%;
   margin: auto;
   display: flex;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .containerCandy {
@@ -49,25 +53,31 @@
 }
 
 .containerTotal {
-  width: 20%;
+  width: 25%;
+  margin: 0 auto;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin: 10px auto;
+  }
 
   .total {
     color: #004a8c;
   }
-}
-.continue {
-  background-color: #b20237;
-  padding: 10px;
-  border-radius: 50px;
-  color: #fff;
-  border: none;
-  width: 90%;
-  margin: auto;
-  &:hover {
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(153, 14, 14, 0.836);
-  }
-  &:active {
-    transform: scale(0.99);
+  .continue {
+    background-color: #b20237;
+    padding: 10px;
+    border-radius: 50px;
+    color: #fff;
+    border: none;
+    width: 90%;
+    margin: auto;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(153, 14, 14, 0.836);
+    }
+    &:active {
+      transform: scale(0.99);
+    }
   }
 }
