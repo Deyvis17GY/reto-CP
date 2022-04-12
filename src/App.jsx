@@ -6,6 +6,7 @@ import { Home } from "pages/Home"
 import { Login } from "pages/Login"
 import { Candy } from "pages/Candy"
 import { Navbar } from "components/Navbar"
+import { Payment } from "pages/Payment"
 function App() {
   return (
     <div className='App'>
@@ -16,6 +17,7 @@ function App() {
             <Route exact path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/candy' element={<Candy />} />
+            <Route path='/payment' element={<Payment />} />
           </Routes>
         </AuthProvider>
       </Router>

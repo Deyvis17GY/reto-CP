@@ -1,0 +1,114 @@
+$gradient: linear-gradient(
+  135deg,
+  rgba(91, 36, 122, 0.45) 0%,
+  rgba(27, 206, 223, 0.55) 100%
+);
+$shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+$primary: #4183d7;
+$secondary: #66cc99;
+
+.main {
+  width: 50%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.left {
+  width: 50%;
+  margin: auto;
+}
+
+.left .head {
+  opacity: 0.95;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.right form {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+.formCard {
+  width: 90%;
+  margin: auto;
+  border: 1px solid #000;
+  overflow: hidden;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+
+  .subtitle {
+    font-size: 15px;
+    text-align: start;
+    color: #004a8c;
+  }
+}
+
+.right form input,
+.right form select {
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  border: none;
+  padding: 10px;
+  width: 90%;
+  margin: 10px auto;
+  outline: none;
+  border-bottom: 1px solid rgba(151, 148, 148, 0.473);
+}
+
+.right form .form-field {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+
+  margin-bottom: 12.5px;
+}
+
+.right form .dateVal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.right form .dateVal select {
+  width: 100%;
+}
+
+.right form button[type="submit"] {
+  background: #00397f;
+  padding: 10px;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-weight: 400;
+  font-size: 12pt;
+  margin-top: 10px;
+  transition: box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+  &.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    background: #00397f98;
+  }
+}
+
+.errors {
+  color: red;
+  font-size: 12px;
+}
