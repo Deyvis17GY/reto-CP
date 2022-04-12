@@ -1,18 +1,28 @@
+import { CustomLink } from "components/CustomLink"
 import React from "react"
-import { Link, useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom"
+import styles from "./navbar.module.scss"
 
 export const Navbar = () => {
   const { pathname } = useLocation()
 
   return (
     pathname !== "/login" && (
-      <div>
-        <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-          <Link to='/'> Home </Link>
-          <Link to='candy'> Candy </Link>
-          <Link to='login'> Login </Link>
+      <header className={styles.header}>
+        <nav>
+          <ul className={styles.nav}>
+            <li>
+              <CustomLink to='/'>Home</CustomLink>
+            </li>
+            <li>
+              <CustomLink to='/candy'>Candy</CustomLink>
+            </li>
+            <li>
+              <CustomLink to='/login'>Login</CustomLink>
+            </li>
+          </ul>
         </nav>
-      </div>
+      </header>
     )
   )
 }

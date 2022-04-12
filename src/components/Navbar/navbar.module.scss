@@ -1,0 +1,21 @@
+.header {
+  position: sticky;
+  top: 0;
+  .nav {
+    padding: 7px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: auto;
+    background-color: #004a8c;
+    li {
+      color: #fff;
+      text-decoration: none;
+      list-style: none;
+
+      &.linkActive {
+        color: red;
+      }
+    }
+  }
+}

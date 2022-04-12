@@ -1,0 +1,7 @@
+.router {
+  color: #fff;
+  text-decoration: none;
+  &.linkActive {
+    color: rgba(255, 255, 255, 0.548);
+  }
+}
