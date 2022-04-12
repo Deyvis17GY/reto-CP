@@ -1,12 +1,11 @@
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
 
-export const popup = ({ user }) => {
+export const popup = (title, user?) => {
   const MySwal = withReactContent(Swal)
 
   MySwal.fire({
-    title: `<strong>Bienvenido:</strong> ${user.displayName}`,
-    html: `<img src="${user.photoURL}" alt="${user.displayName}" />`,
+    title: `<strong>${title}</strong> ${user ? user?.displayName : ""}`,
     showCloseButton: false,
     showCancelButton: false,
     focusConfirm: false,
