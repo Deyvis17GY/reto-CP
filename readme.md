@@ -46,10 +46,15 @@ Start the server
 To run this project, you will need to add the following environment variables to your .env.local file
 
 `REACT_APP_API_KEY` = firebase api key
+
 `REACT_APP_AUTH_DOMAIN` = dominio app firebase
+
 `REACT_APP_PROJECT_ID` = project id
+
 `REACT_APP_STORAGE_BUCKET` = project bucket
+
 `REACT_APP_MESSAGE_SENDER_ID` = message sender
+
 `REACT_APP_ID` = app id
 
 Note: all variables are found when creating a new project in firebase
