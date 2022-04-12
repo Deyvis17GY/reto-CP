@@ -1,11 +1,11 @@
 import { initializeApp } from "firebase/app"
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGE_SENDER_ID,
-  appId: process.env.REACT_APP_ID
+  apiKey: "AIzaSyCmXlIhhCBxSG4biVJumFu66tjtosSVzYQ",
+  authDomain: "reto-cp.firebaseapp.com",
+  projectId: "reto-cp",
+  storageBucket: "reto-cp.appspot.com",
+  messagingSenderId: "46102597139",
+  appId: "1:46102597139:web:0536827e7fb3b79a7a79e6"
 }
 
 export default initializeApp(firebaseConfig)
