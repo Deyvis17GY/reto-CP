@@ -1,22 +1,19 @@
-import { MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons"
 import clsx from "clsx"
 import { CandyFooter } from "components/CandyFooter"
 import { useAuth } from "context/AuthContext"
 import React, { useEffect, useState } from "react"
-import { useRef } from "react"
+import { useNavigate } from "react-router-dom"
 import { getCandyStore } from "services/api"
 import { popup } from "utils/popup"
 import styles from "./candy.module.scss"
 
 export const Candy = () => {
   const [candy, setCandy] = useState([])
-  const [isZero, setIsZero] = useState(true)
+
   const [total, setTotal] = useState(0)
   const [cart, setCart] = useState([])
 
-  const [value, setValue] = useState(0)
-
-  const valueQuantity = useRef(null)
+  const navigate = useNavigate()
 
   const { user } = useAuth()
 
@@ -73,18 +70,21 @@ export const Candy = () => {
     setTotal(totalAmount)
   }
 
-  const validateZero = clsx(styles.minus, {
-    [styles.zero]: isZero
-  })
-
   const actualQuantity = (id) => cart.find((item) => item.id === id)?.quantity
+
+  const continuePurchase = () => {
+    if (cart.length === 0) {
+      popup("No hay productos seleccionados")
+    } else {
+      localStorage.setItem("total", total)
+      navigate("/payment")
+    }
+  }
 
   useEffect(() => {
     showCandyStore()
     if (user) {
-      popup({
-        user
-      })
+      popup("Bienvenido:", user)
     }
   }, [user])
   return (
@@ -108,26 +108,6 @@ export const Candy = () => {
               {item.id}
             </figure>
 
-            {/* <footer className={styles.footer}>
-              <MinusCircleOutlined
-                onClick={() => decrementTotal(item)}
-                className={
-                  actualQuantity(item.id) === undefined
-                    ? validateZero
-                    : styles.minus
-                }
-              />
-              <span ref={valueQuantity} className={styles.value}>
-                {" "}
-                {actualQuantity(item.id) || 0}
-              </span>
-              <PlusCircleOutlined
-                onClick={() => totalProducts(item)}
-                className={styles.plus}
-              />
-              <p>S/.{item.price}</p>
-            </footer> */}
-
             <CandyFooter
               item={item}
               addCart={() => totalProducts(item)}
@@ -145,6 +125,9 @@ export const Candy = () => {
       <section className={styles.containerTotal}>
         <h2>Total</h2>
         <p>S/.{total}</p>
+        <button className={styles.continue} onClick={() => continuePurchase()}>
+          Continuar
+        </button>
       </section>
     </aside>
   )
