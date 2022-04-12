@@ -1,8 +1,6 @@
-import { async } from "@firebase/util"
 import { useAuth } from "context/AuthContext"
 import { useFormik } from "formik"
-import React, { useState } from "react"
-import { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { completePurchase } from "services/api"
 import { popup } from "utils/popup"
 import styles from "./payment.module.scss"
@@ -56,8 +54,8 @@ export const Payment = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: user.displayName || "",
-      email: user.email || "",
+      name: user?.displayName || "",
+      email: user?.email || "",
       dni: "",
       card: "",
       month: "",

@@ -86,6 +86,11 @@ export const Candy = () => {
     if (user) {
       popup("Bienvenido:", user)
     }
+    return () => {
+      setCandy([])
+      setTotal(0)
+      setCart([])
+    }
   }, [user])
   return (
     <aside className={styles.general}>
@@ -104,8 +109,6 @@ export const Candy = () => {
               <figcaption>
                 <h2 className={styles.description}>{item.description}</h2>
               </figcaption>
-
-              {item.id}
             </figure>
 
             <CandyFooter

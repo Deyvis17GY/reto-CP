@@ -1,7 +1,6 @@
 import { GoogleOutlined, UserOutlined } from "@ant-design/icons"
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
 import styles from "./login.module.scss"
-import clsx from "clsx"
 import { useNavigate } from "react-router-dom"
 
 export const Login = () => {
