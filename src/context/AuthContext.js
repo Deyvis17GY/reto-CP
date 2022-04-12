@@ -1,6 +1,5 @@
 import { getAuth } from "firebase/auth"
 import React, { useContext, useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
 
 const AuthContext = React.createContext()
 
@@ -11,7 +10,6 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null)
-  const history = useNavigate()
 
   useEffect(() => {
     const unsubscribe = getAuth().onAuthStateChanged(async (authUser) => {
@@ -26,7 +24,7 @@ export const AuthProvider = ({ children }) => {
     return () => {
       unsubscribe()
     }
-  }, [user, history])
+  }, [])
 
   return (
     <AuthContext.Provider value={{ user }}>

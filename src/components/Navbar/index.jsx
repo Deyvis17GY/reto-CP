@@ -1,16 +1,25 @@
+import { LogoutOutlined } from "@ant-design/icons"
 import { CustomLink } from "components/CustomLink"
+import { getAuth } from "firebase/auth"
 import React from "react"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import styles from "./navbar.module.scss"
 
 export const Navbar = () => {
   const { pathname } = useLocation()
+  const navigate = useNavigate()
+
+  const logoutAuth = async () => {
+    getAuth()
+      .signOut()
+      .then(() => navigate("/"))
+  }
 
   return (
     pathname !== "/login" && (
       <header className={styles.header}>
-        <nav>
-          <ul className={styles.nav}>
+        <nav className={styles.nav}>
+          <ul>
             <li>
               <CustomLink to='/'>Home</CustomLink>
             </li>
@@ -22,6 +31,10 @@ export const Navbar = () => {
             </li>
           </ul>
         </nav>
+        <LogoutOutlined
+          className={styles.logout}
+          onClick={() => logoutAuth()}
+        />
       </header>
     )
   )
